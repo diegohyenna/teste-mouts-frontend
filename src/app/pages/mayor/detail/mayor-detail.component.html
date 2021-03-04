@@ -1,0 +1,25 @@
+<h1 class="mt-5">Detalhes do prefeito</h1>
+<ngb-alert *ngIf="alert.type" [type]="alert.type" (closed)="close()">{{
+  alert.message
+}}</ngb-alert>
+<div *ngIf="loading" class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<table class="table mt-5" *ngIf="!loading">
+  <thead>
+    <tr>
+      <th width="10%">ID</th>
+      <th>Nome</th>
+      <th width="35%" class="text-right">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ mayor.PRE_ID }}</td>
+      <td>{{ mayor.PRE_NOME }}</td>
+      <td class="text-right">
+        <button class="btn btn-info" (click)="goBack()">Voltar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

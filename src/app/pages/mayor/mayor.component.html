@@ -1,0 +1,45 @@
+<h1 class="mt-5">
+  Prefeitos
+  <button class="btn btn-primary btn-large" [routerLink]="['/mayor/create']">
+    Novo
+  </button>
+</h1>
+<ngb-alert *ngIf="alert.type" [type]="alert.type" (closed)="close()">{{
+  alert.message
+}}</ngb-alert>
+<div *ngIf="loading" class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<table class="table mt-5 table-striped" *ngIf="!loading">
+  <thead>
+    <tr>
+      <th width="10%">ID</th>
+      <th>Nome</th>
+      <th width="35%" class="text-right">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mayor of mayors">
+      <td>{{ mayor.PRE_ID }}</td>
+      <td>{{ mayor.PRE_NOME }}</td>
+      <td class="text-right">
+        <button
+          class="btn btn-info mr-2"
+          [routerLink]="['/mayor/' + mayor.PRE_ID]"
+        >
+          Detalhes
+        </button>
+        <button
+          class="btn btn-warning mr-2"
+          [routerLink]="['/mayor/' + mayor.PRE_ID + '/edit']"
+        >
+          Editar
+        </button>
+        <button class="btn btn-danger" (click)="deleteMayor(mayor.PRE_ID)">
+          Excluir
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

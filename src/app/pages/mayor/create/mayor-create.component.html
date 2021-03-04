@@ -1,0 +1,31 @@
+<h1 class="mt-5">Criar novo prefeito</h1>
+<ngb-alert *ngIf="alert.type" [type]="alert.type" (closed)="close()">{{
+  alert.message
+}}</ngb-alert>
+<div *ngIf="loading" class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<table *ngIf="!loading" class="table mt-5">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th width="35%" class="text-right">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Informe o nome do prefeito"
+          [formControl]="name"
+        />
+      </td>
+      <td class="text-right">
+        <button class="btn btn-success mr-2" (click)="create()">Salvar</button
+        ><button class="btn btn-info" (click)="goBack()">Voltar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,68 @@
+<h1 class="mt-5">Criar nova cidade</h1>
+<ngb-alert *ngIf="alert.type" [type]="alert.type" (closed)="close()">{{
+  alert.message
+}}</ngb-alert>
+<div *ngIf="loading" class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<form *ngIf="!loading" [ngClass]="error ? 'was-validated' : ''" novalidate>
+  <div class="form-group">
+    <label>Nome</label>
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Informe o nome da cidade"
+      [formControl]="name"
+      required
+    />
+    <div
+      *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+      class="text-danger"
+    >
+      O nome é requerido!
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Estado</label>
+    <select
+      class="custom-select"
+      (change)="changeUf($event)"
+      [formControl]="uf"
+    >
+      <option value="" disabled selected>Selecione o estado</option>
+      <option *ngFor="let uf of ufs" [value]="uf.UF_ID">
+        {{ uf.UF_NOME }}
+      </option>
+    </select>
+    <div *ngIf="uf?.invalid && (uf?.dirty || uf?.touched)" class="text-danger">
+      O estado é requerido
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Prefeito</label>
+    <select
+      class="custom-select"
+      (change)="changeMayor($event)"
+      [formControl]="mayor"
+    >
+      <option value="" disabled selected>Selecione o prefeito</option>
+      <option *ngFor="let mayor of mayors" [value]="mayor.PRE_ID">
+        {{ mayor.PRE_NOME }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>População</label>
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Informe a quantidade da população"
+      [formControl]="population"
+    />
+  </div>
+  <div class="text-right">
+    <button class="btn btn-success mr-2" (click)="create($event)">Salvar</button
+    ><button class="btn btn-info" (click)="goBack()">Voltar</button>
+  </div>
+</form>

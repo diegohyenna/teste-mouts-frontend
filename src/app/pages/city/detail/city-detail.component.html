@@ -1,9 +1,4 @@
-<h1 class="mt-5">
-  Cidades
-  <button class="btn btn-primary btn-large" [routerLink]="['/city/create']">
-    Novo
-  </button>
-</h1>
+<h1 class="mt-5">Detalhes da cidade</h1>
 <ngb-alert *ngIf="alert.type" [type]="alert.type" (closed)="close()">{{
   alert.message
 }}</ngb-alert>
@@ -11,40 +6,28 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 <div class="table-responsive">
-  <table class="mt-5 table table-striped" *ngIf="!loading">
+  <table class="table mt-5" *ngIf="!loading">
     <thead>
       <tr>
         <th width="10%">ID</th>
         <th>Nome</th>
         <th>Estado</th>
+        <th width="10%">Sigla</th>
         <th>Prefeito</th>
         <th>População</th>
         <th width="35%" class="text-right">Ações</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let city of cities">
+      <tr>
         <td>{{ city.CID_ID }}</td>
         <td>{{ city.CID_NOME }}</td>
         <td>{{ city.UF_NOME }}</td>
+        <td>{{ city.UF_SIGLA }}</td>
         <td>{{ city.PRE_NOME || "em branco" }}</td>
         <td>{{ city.CID_POPULACAO || "em branco" }}</td>
         <td class="text-right">
-          <button
-            class="btn btn-info mr-2"
-            [routerLink]="['/city/' + city.CID_ID]"
-          >
-            Detalhes
-          </button>
-          <button
-            class="btn btn-warning mr-2"
-            [routerLink]="['/city/' + city.CID_ID + '/edit']"
-          >
-            Editar
-          </button>
-          <button class="btn btn-danger" (click)="deleteCity(city.CID_ID)">
-            Excluir
-          </button>
+          <button class="btn btn-info" (click)="goBack()">Voltar</button>
         </td>
       </tr>
     </tbody>

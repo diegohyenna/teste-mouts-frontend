@@ -1,22 +1,22 @@
-import { UfService } from './../../../services/uf.service';
+import { CityService } from './../../../services/city.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-uf-detail',
-  templateUrl: './uf-detail.component.html',
-  styleUrls: ['./uf-detail.component.sass'],
+  selector: 'app-city-detail',
+  templateUrl: './city-detail.component.html',
+  styleUrls: ['./city-detail.component.sass'],
 })
-export class UfDetailComponent implements OnInit {
+export class CityDetailComponent implements OnInit {
   public loading = false;
   public alert = {
     type: '',
     message: '',
   };
-  public uf: any;
+  public city: any;
 
   constructor(
-    public ufService: UfService,
+    public cityService: CityService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -26,11 +26,11 @@ export class UfDetailComponent implements OnInit {
 
     if (id) {
       this.loading = true;
-      this.ufService
-        .getUf(id)
-        .then((uf: any) => {
+      this.cityService
+        .getCity(id)
+        .then((city: any) => {
           this.loading = false;
-          this.uf = uf.result[0];
+          this.city = city.result[0];
         })
         .catch((error) => {
           this.loading = false;
@@ -39,7 +39,7 @@ export class UfDetailComponent implements OnInit {
         });
     } else {
       this.alert.type = 'danger';
-      this.alert.message = 'Não foi possível obter o id do estado!';
+      this.alert.message = 'Não foi possível obter o id da cidade!';
     }
   }
 
@@ -49,6 +49,6 @@ export class UfDetailComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/ufs']);
+    this.router.navigate(['/cities']);
   }
 }

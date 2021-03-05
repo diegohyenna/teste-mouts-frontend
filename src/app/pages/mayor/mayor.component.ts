@@ -35,13 +35,6 @@ export class MayorComponent implements OnInit {
         this.alert.type = 'danger';
         this.alert.message = error.message;
       });
-
-    // this.mayorService
-    //   .getMayorByName('ma')
-    //   .then((mayors) => {
-    //     console.log(mayors);
-    //   })
-    //   .catch((error) => console.log(error));
   }
 
   close() {
@@ -55,7 +48,6 @@ export class MayorComponent implements OnInit {
       this.mayorService
         .deleteMayor(id)
         .then((res: any) => {
-          console.log(res);
           if (res?.result?.affectedRows) {
             this.alert.type = 'success';
             this.alert.message = 'Prefeito deletado com sucesso!';

@@ -10,34 +10,36 @@
 <div *ngIf="loading" class="spinner-border text-primary" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-<table class="mt-5 table table-striped" *ngIf="!loading">
-  <thead>
-    <tr>
-      <th width="10%">ID</th>
-      <th>Nome</th>
-      <th width="10%">Sigla</th>
-      <th width="35%" class="text-right">Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let uf of ufs">
-      <td>{{ uf.UF_ID }}</td>
-      <td>{{ uf.UF_NOME }}</td>
-      <td>{{ uf.UF_SIGLA }}</td>
-      <td class="text-right">
-        <button class="btn btn-info mr-2" [routerLink]="['/uf/' + uf.UF_ID]">
-          Detalhes
-        </button>
-        <button
-          class="btn btn-warning mr-2"
-          [routerLink]="['/uf/' + uf.UF_ID + '/edit']"
-        >
-          Editar
-        </button>
-        <button class="btn btn-danger" (click)="deleteUf(uf.UF_ID)">
-          Excluir
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="mt-5 table table-striped" *ngIf="!loading">
+    <thead>
+      <tr>
+        <th width="10%">ID</th>
+        <th>Nome</th>
+        <th width="10%">Sigla</th>
+        <th width="35%" class="text-right">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let uf of ufs">
+        <td>{{ uf.UF_ID }}</td>
+        <td>{{ uf.UF_NOME }}</td>
+        <td>{{ uf.UF_SIGLA }}</td>
+        <td class="text-right">
+          <button class="btn btn-info mr-2" [routerLink]="['/uf/' + uf.UF_ID]">
+            Detalhes
+          </button>
+          <button
+            class="btn btn-warning mr-2"
+            [routerLink]="['/uf/' + uf.UF_ID + '/edit']"
+          >
+            Editar
+          </button>
+          <button class="btn btn-danger" (click)="deleteUf(uf.UF_ID)">
+            Excluir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

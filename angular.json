@@ -31,9 +31,15 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/boostrap.min.css",
               "src/styles.sass"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/bootstrap-bundle.min.js",
+              "src/assets/js/popper.min.js",
+              "src/assets/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

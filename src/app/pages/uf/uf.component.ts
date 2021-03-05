@@ -48,7 +48,6 @@ export class UfComponent implements OnInit {
       this.ufService
         .deleteUf(id)
         .then((res: any) => {
-          console.log(res);
           if (res?.result?.affectedRows) {
             this.alert.type = 'success';
             this.alert.message = 'Estado deletado com sucesso!';

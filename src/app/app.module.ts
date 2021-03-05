@@ -1,3 +1,4 @@
+import { CityComponent } from './pages/city/city.component';
 import { UfEditComponent } from './pages/uf/edit/uf-edit.component';
 import { UfCreateComponent } from './pages/uf/create/uf-create.component';
 import { MayorCreateComponent } from './pages/mayor/create/mayor-create.component';
@@ -12,12 +13,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuComponent } from './components/menu/menu.component';
 import { MayorComponent } from './pages/mayor/mayor.component';
 import { UfComponent } from './pages/uf/uf.component';
-import { CityComponent } from './pages/city/city.component';
 import { PageNotfoundComponent } from './pages/page-notfound/page-notfound.component';
 import { MayorDetailComponent } from './pages/mayor/detail/mayor-detail.component';
 import { MayorEditComponent } from './pages/mayor/edit/mayor-edit.component';
 import { UfDetailComponent } from './pages/uf/detail/uf-detail.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CityCreateComponent } from './pages/city/create/city-create.component';
+import { CityDetailComponent } from './pages/city/detail/city-detail.component';
+import { CityEditComponent } from './pages/city/edit/city-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { FooterComponent } from './components/footer/footer.component';
     MayorComponent,
     UfComponent,
     CityComponent,
+    CityCreateComponent,
+    CityDetailComponent,
+    CityEditComponent,
     PageNotfoundComponent,
     MayorDetailComponent,
     MayorEditComponent,

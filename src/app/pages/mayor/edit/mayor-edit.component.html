@@ -5,24 +5,29 @@
 <div *ngIf="loading" class="spinner-border text-primary" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-<table class="mt-5 table" *ngIf="!loading">
-  <thead>
-    <tr>
-      <th width="10%">ID</th>
-      <th>Nome</th>
-      <th width="35%" class="text-right">Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <input class="form-control" type="text" [value]="id.value" disabled />
-      </td>
-      <td><input class="form-control" type="text" [formControl]="name" /></td>
-      <td class="text-right">
-        <button class="btn btn-success mr-2" (click)="update()">Salvar</button
-        ><button class="btn btn-info" (click)="goBack()">Voltar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<form *ngIf="!loading" [ngClass]="error ? 'was-validated' : ''" novalidate>
+  <div class="form-group">
+    <label>ID</label>
+    <p>{{ id.value }}</p>
+  </div>
+  <div class="form-group">
+    <label>Nome</label>
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Informe a quantidade da população"
+      [formControl]="name"
+      required
+    />
+    <div
+      *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+      class="text-danger"
+    >
+      O nome é requerido!
+    </div>
+  </div>
+  <div class="text-right">
+    <button class="btn btn-success mr-2" (click)="update($event)">Salvar</button
+    ><button class="btn btn-info" (click)="goBack()">Voltar</button>
+  </div>
+</form>

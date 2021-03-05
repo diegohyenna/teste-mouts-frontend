@@ -10,6 +10,7 @@ import { FormControl } from '@angular/forms';
 })
 export class MayorEditComponent implements OnInit {
   public alert = { type: '', message: '' };
+  public error = false;
   public loading = false;
 
   public id = new FormControl('');
@@ -44,8 +45,11 @@ export class MayorEditComponent implements OnInit {
     }
   }
 
-  update() {
+  update(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
     if (this.id.value && this.name.value) {
+      this.error = false;
       this.mayorService
         .updateMayor(this.id.value, this.name.value)
         .then((res: any) => {
@@ -74,6 +78,7 @@ export class MayorEditComponent implements OnInit {
           this.alert.message = 'Não foi possível salvar os dados!';
         });
     } else {
+      this.error = true;
       this.alert.type = 'warning';
       this.alert.message = 'Os campos não podem ser em branco!';
     }

@@ -10,6 +10,7 @@ import { FormControl } from '@angular/forms';
 })
 export class MayorCreateComponent implements OnInit {
   public alert = { type: '', message: '' };
+  public error = false;
   public loading = false;
 
   public name = new FormControl('');
@@ -18,8 +19,11 @@ export class MayorCreateComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  create() {
+  create(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
     if (this.name.value) {
+      this.error = false;
       this.loading = true;
       this.mayorService
         .createMayor(this.name.value)
@@ -51,6 +55,7 @@ export class MayorCreateComponent implements OnInit {
           this.alert.message = 'Não foi possível salvar os dados!';
         });
     } else {
+      this.error = true;
       this.alert.type = 'warning';
       this.alert.message = 'Os campos não podem ser em branco!';
     }

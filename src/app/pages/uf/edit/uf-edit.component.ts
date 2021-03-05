@@ -4,13 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-mayor-edit',
+  selector: 'app-uf-edit',
   templateUrl: './uf-edit.component.html',
   styleUrls: ['./uf-edit.component.sass'],
 })
 export class UfEditComponent implements OnInit {
   public alert = { type: '', message: '' };
   public loading = false;
+  public error: any;
 
   public id = new FormControl('');
   public name = new FormControl('');
@@ -46,8 +47,11 @@ export class UfEditComponent implements OnInit {
     }
   }
 
-  update() {
+  update(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
     if (this.id.value && this.name.value && this.sigla.value) {
+      this.error = false;
       this.ufService
         .updateUf(this.id.value, this.name.value, this.sigla.value)
         .then((res: any) => {
@@ -76,6 +80,7 @@ export class UfEditComponent implements OnInit {
           this.alert.message = 'Não foi possível salvar os dados!';
         });
     } else {
+      this.error = true;
       this.alert.type = 'warning';
       this.alert.message = 'Os campos não podem ser em branco!';
     }
